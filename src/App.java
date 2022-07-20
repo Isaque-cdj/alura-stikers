@@ -14,7 +14,8 @@ public class App {
 
         // Fazzer uma conexão HTTP buscar os tops 250 filmes
 
-        String url = "https://imdb-api.com/en/API/Top250Movies/k_8pw5xuzg";
+        // String url = "https://imdb-api.com/en/API/Top250Movies/k_8pw5xuzg";
+        String url = "https://api.nasa.gov/planetary/apod?api_key=PemP5z34quUjhXhIPhar2I4zINAn08xBh0w5dzq7&start_date=2022-06-12&end_date=2022-06-14";
         URI endereco = URI.create(url);
         var client = HttpClient.newHttpClient();
         var request = HttpRequest.newBuilder(endereco).GET().build();
@@ -32,8 +33,9 @@ public class App {
 
             Map<String, String> filme = listaDeFilmes.get(i);
 
-            String urlImagem = filme.get("image")
-                    .replaceAll("(@+)(.*).jpg$", "$1.jpg");
+            String urlImagem = // filme.get("image")
+                    filme.get("url")
+                            .replaceAll("(@+)(.*).jpg$", "$1.jpg");
 
             String titulo = filme.get("title");
 
